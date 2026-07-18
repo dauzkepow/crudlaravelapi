@@ -54,3 +54,15 @@ php artisan boost:install
 - Menambahkan accessor di Model
   mengubah nilai saat field diakses
   app/Models/Product.php
+
+## API Resource
+
+-> fitur yang digunakan untuk mengubah data Model Eloquent menjadi format JSON terstruktur
+
+Kenapa menggunakan API Resource ?
+
+- pisahkan logika data dan presentasi = kontrol data dikirim ke client tanpa mengubah model dan controller
+- kemananan data = cegah password dikirim ke client secata tidak sengaja
+- konsistensi format reponse = mudahkan frontend untuk menerika data dengan format jelas
+
+php artisan make:resource ProductResource
