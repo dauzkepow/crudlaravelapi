@@ -110,3 +110,18 @@ php artisan make:resource ProductResource
 - Uji Coba
   http://localhost:8000/api/products/1
   GET
+
+## Update Data
+
+- tambah method update() pada ProductController.php
+
+- Uji Coba
+  http://localhost:8000/api/products/1
+  Post
+  Body, form-data, masukkan key-value
+  image file dari PC (opsional)
+  title = isi text
+  description = isi text
+  price = isi angka
+  stock = isi angka
+  \_method = PUT

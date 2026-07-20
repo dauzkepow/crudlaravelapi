@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 // import validator = validasi data
 use Illuminate\Support\Facades\Validator;
 
+// import facade Storage = hapus file image dari server
+use Illuminate\Support\Facades\Storage;
+
 
 
 class ProductController extends Controller
@@ -73,5 +76,58 @@ class ProductController extends Controller
 
         // parsing variabel $product ke dalam resource ProductResource
         return new ProductResource(true, 'Detail Data Product!', $product);
+    }
+
+    // update()
+    public function update(Request $request, $id)
+    {
+        // validasi data
+        $validator = Validator::make($request->all(), [
+            'image'         => 'image|mimes:jpeg,png,jpg|max:2048',
+            'title'         => 'required',
+            'description'   => 'required',
+            'price'         => 'required|numeric',
+            'stock'         => 'required|numeric',
+        ]);
+
+        // check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        // get data by id
+        $product = Product::find($id);
+
+        // check if file name image is not empty
+        if ($request->hasFile('image')) {
+
+            // delete old image
+            Storage::delete('products/' . basename($product->image));
+
+            // upload new image
+            $image = $request->file('image');
+            $image->storeAs('products', $image->hashName());
+
+            // update product with new image
+            $product->update([
+                'image'         => $image->hashName(),
+                'title'         => $request->title,
+                'description'   => $request->description,
+                'price'         => $request->price,
+                'stock'         => $request->stock,
+            ]);
+
+        } else {
+            // update product without image
+            $product->update([
+                'title'         => $request->title,
+                'description'   => $request->description,
+                'price'         => $request->price,
+                'stock'         => $request->stock,
+            ]);
+        }
+
+        // response JSON
+        return new ProductResource(true, 'Data Product Berhasil Diubah!', $product);
     }
 }
