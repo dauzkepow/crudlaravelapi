@@ -66,3 +66,23 @@ Kenapa menggunakan API Resource ?
 - konsistensi format reponse = mudahkan frontend untuk menerika data dengan format jelas
 
 php artisan make:resource ProductResource
+
+## Menampilkan data dari Database
+
+- buat controller Product
+  php artisan make:controller Api/ProductController
+  buka lalu edit
+
+- Buat Route Rest API
+  php artisan install:api {otomatis download library sanctum}
+
+- buka routes/api.php lalu edit
+
+- lihat route yang dibuat
+  php artisan route:list
+
+- Uji Coba dengan postman
+  http://localhost:8000/api/products
+  Method = GET
+  pastikan berhasil muncul respon tapi masih data: []
+-
