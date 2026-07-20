@@ -85,4 +85,20 @@ php artisan make:resource ProductResource
   http://localhost:8000/api/products
   Method = GET
   pastikan berhasil muncul respon tapi masih data: []
--
+
+## Insert Data ke Database
+
+- tambah method store pada ProductController.php
+
+- uji coba
+  http://localhost:8000/api/products
+  POST
+  Body, form-data, masukkan key-value
+  image file dari PC
+  title = isi text
+  description = isi text
+  price = isi angka
+  stock = isi angka
+
+    pastikan berhasil mendapat respon true
+    tes juga jika price dikasih huruf
