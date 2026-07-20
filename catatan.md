@@ -102,3 +102,11 @@ php artisan make:resource ProductResource
 
     pastikan berhasil mendapat respon true
     tes juga jika price dikasih huruf
+
+## Detail Data by ID
+
+- tambah method show() pada ProductController.php
+
+- Uji Coba
+  http://localhost:8000/api/products/1
+  GET
