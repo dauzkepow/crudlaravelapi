@@ -125,3 +125,11 @@ php artisan make:resource ProductResource
   price = isi angka
   stock = isi angka
   \_method = PUT
+
+## Delete Data
+
+- tambah method destroy() pada ProductController.php
+
+- Uji Coba
+  http://localhost:8000/api/products/1
+  DELETE
